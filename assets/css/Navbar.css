@@ -1,0 +1,374 @@
+html{
+    scroll-behavior: smooth;
+}
+body.no-scroll {
+  overflow: hidden;
+}
+
+:root {
+  /* Paleta de colores */
+  --color-primary: #952f57;
+  --color-secondary: #7a2648;
+  --color-dark: #2b2b2b;
+  --color-light: #fff;
+  --color-gray: #404040;
+
+  /* Tipografía */
+  --font-base: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: "Montserrat", sans-serif;
+
+  /* Espaciados y animaciones */
+  --transition-base: 0.3s ease;
+  --slider-padding-y: 150px;
+    --navbar-height: 100px;
+
+}
+
+/* Reset básico y box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Tipografía general */
+body,
+button,
+input,
+select,
+textarea {
+  color: var(--color-gray);
+  font-family: var(--font-base);
+  line-height: 1.75;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Encabezados */
+h1, h5, .h1, .h5 {
+    color: #fff;
+  font-family: var(--font-heading);
+}
+h2,
+h3,
+h4,
+
+h6,
+
+.h2,
+.h3,
+.h4,
+
+.h6 {
+  margin: 0 0 1.4rem;
+  color: #000;
+  font-family: var(--font-heading);
+  clear: both;
+}
+
+hr {
+  opacity: 1 !important;
+}
+
+h2.title{
+      color: #fff;
+  font-family: var(--font-heading);
+}
+
+.wow {
+  visibility: hidden;
+}
+
+/* ----------------------- HEADER ----------------------- */
+.top-header {
+  background-color: var(--color-primary);
+  padding: 10px 0;
+  font-size: 0.938rem;
+  color: var(--color-light);
+
+
+}
+
+.top-header i,
+.social-icons a {
+  color: var(--color-light);
+  transition: color var(--transition-base);
+}
+
+.social-icons a {
+  margin-left: 10px;
+}
+
+.social-icons a:hover {
+  color: #ddd;
+}
+
+@media (max-width: 767.98px) {
+
+  .top-header .contact-info,
+  .top-header .social-icons {
+    text-align: center;
+  }
+
+  .top-header .contact-info {
+    margin-bottom: 10px;
+  }
+
+  .top-header .social-icons {
+    padding-top: 5px;
+  }
+}
+
+/* ----------------------- NAVBAR ----------------------- */
+.navbar-custom {
+
+  top: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  background-color: rgba(43, 43, 43, 0.6);
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+  z-index: 1000;
+}
+
+.navbar-custom .container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 2rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-brand img {
+  max-height: 45px;
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-link {
+  color: var(--color-light);
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  padding: 0 1.25rem;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  transition: background-color var(--transition-base);
+}
+
+.nav-link.active,
+.nav-link:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-light) !important;
+  border-bottom: 2px solid var(--color-light);
+}
+
+.navbar-toggler i {
+  color: var(--color-light);
+  font-size: 1.5rem;
+}
+.nav-link:focus, .nav-link:hover  {
+    color: var(--color-light) !important;
+}
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: var(--color-light) !important;
+}
+/* ---------------------- DROPDOWN CUSTOM ---------------------- */
+.dropdown-menu {
+  background-color: #1f1f1f;
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  min-width: 1100px;
+  max-height: 420px;
+  overflow-y: auto;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  animation: fadeInDropdown 0.3s ease-in-out;
+}
+
+.dropdown-menu .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -0.5rem;
+  
+}
+
+.dropdown-menu .col-6,
+.dropdown-menu .col-lg-3 {
+  padding: 0.4rem 0.5rem;
+}
+
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background-color: transparent;
+  border-radius: 10px;
+  font-weight: 500;
+  color: #fff;
+  padding: 0.55rem 0.75rem;
+  text-decoration: none;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.dropdown-link:hover {
+  background-color: #952f57;
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+.dropdown-link i {
+  font-size: 1.2rem;
+  color: #952f57;
+  transition: color 0.25s ease;
+}
+
+.dropdown-link:hover i {
+  color: #fff;
+}
+
+@keyframes fadeInDropdown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Scrollbar */
+.dropdown-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+  background-color: #7a2648;
+  border-radius: 8px;
+}
+
+.navbar-custom.hide-on-scroll {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+/* ---------------------- RESPONSIVE ---------------------- */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+
+    top: var(--navbar-height); /* Alineado con navbar */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    background-color: #1f1f1f;
+    padding: 1rem;
+    border-bottom: 2px solid var(--color-primary);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    z-index: 999;
+  }
+
+  .navbar-collapse.scrolled {
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-link {
+    display: block;
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dropdown-menu {
+    min-width: 100%;
+    max-height: 350px;
+  }
+
+  .dropdown-menu .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .dropdown-menu .col-lg-3 {
+    flex: initial !important;
+    max-width: 100% !important;
+  }
+
+  .navbar-nav .dropdown-menu {
+    position: absolute;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-collapse {
+    justify-content: center;
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* ---------------------- SCROLLED STATE ---------------------- */
+.navbar-custom.scrolled {
+  background-color: #fff !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  top: 0;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.navbar-custom.scrolled .nav-link {
+  color: #000 !important;
+}
+
+.navbar-custom.scrolled .nav-link.active,
+.navbar-custom.scrolled .nav-link:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-light) !important;
+  border-bottom: 2px solid #000;
+}
+
+.navbar-custom.scrolled .navbar-brand img {
+  content: url('https://valdiviaconsultoresyabogados.pe/wp-content/uploads/2024/04/logo_rojo.png');
+}
+
+.navbar-custom.scrolled .navbar-toggler i {
+  color: #000 !important;
+}
+
+/* ---------------------- ANIMACIÓN ---------------------- */
+@keyframes fadeInDropdown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+@media (min-width: 992px) {
+  .dropdown-menu .col-lg-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
