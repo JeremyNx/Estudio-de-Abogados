@@ -100,7 +100,7 @@
                     <!-- Cargos -->
                     <div class="row mt-4">
                       <div class="col-12">
-                        <h4 class="text-danger fw-bold">CARGO EN EL QUE SE DESEMPEÑÓ</h4>
+                        <h4 class="fw-bold" style="color: #62152d;">CARGO EN EL QUE SE DESEMPEÑÓ</h4>
                         <ul class="list-unstyled ps-3 fst-italic">
                           <li>• Asesor en Gabinete de Asesores de la <strong>Presidencia del Consejo de Ministros –
                               PCM</strong>.</li>

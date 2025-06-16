@@ -7,8 +7,8 @@ body.no-scroll {
 
 :root {
   /* Paleta de colores */
-  --color-primary: #952f57;
-  --color-secondary: #7a2648;
+  --color-primary: #62152d;
+  --color-secondary: #8a2c47;
   --color-dark: #2b2b2b;
   --color-light: #fff;
   --color-gray: #404040;
@@ -120,6 +120,7 @@ h2.title{
 }
 
 /* ----------------------- NAVBAR ----------------------- */
+
 .navbar-custom {
 
   top: 0;
@@ -145,12 +146,12 @@ h2.title{
 }
 
 .navbar-brand img {
-  max-height: 45px;
+  height: 60px;
+
 }
 
 .navbar-nav {
   display: flex;
-  gap: 1rem;
 }
 
 .nav-link {
@@ -163,10 +164,15 @@ h2.title{
   align-items: center;
   transition: background-color var(--transition-base);
 }
+.logo-underline {
+  display: inline-block;
+  border-bottom: 2px solid var(--color-primary); /* Usa el color de tu marca */
+  padding-bottom: 5px;
+}
 
 .nav-link.active,
 .nav-link:hover {
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary);
   color: var(--color-light) !important;
   border-bottom: 2px solid var(--color-light);
 }
@@ -222,14 +228,14 @@ h2.title{
 }
 
 .dropdown-link:hover {
-  background-color: #952f57;
+  background-color: var(--color-primary);
   transform: translateY(-2px);
   color: #fff;
 }
 
 .dropdown-link i {
   font-size: 1.2rem;
-  color: #952f57;
+  color: var(--color-primary);
   transition: color 0.25s ease;
 }
 
@@ -342,13 +348,13 @@ h2.title{
 
 .navbar-custom.scrolled .nav-link.active,
 .navbar-custom.scrolled .nav-link:hover {
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary);
   color: var(--color-light) !important;
   border-bottom: 2px solid #000;
 }
 
 .navbar-custom.scrolled .navbar-brand img {
-  content: url('https://valdiviaconsultoresyabogados.pe/wp-content/uploads/2024/04/logo_rojo.png');
+  content: url('../img/logovinilo.png');
 }
 
 .navbar-custom.scrolled .navbar-toggler i {

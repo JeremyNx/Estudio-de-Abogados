@@ -1,3 +1,4 @@
+
 <?php include('includes/header.php'); ?>
 
 <?php
@@ -46,40 +47,59 @@ $cards = [
   [
     'icon' => 'fa fa-graduation-cap',
     'title' => 'Expertos Asesores',
-    'text' => '10 000+ casos ganados',
+    'text' => '10000', // valor numérico real
+    'animated' => true,
+    'link' => null
   ],
   [
     'icon' => 'fa-brands fa-whatsapp',
     'title' => 'Separa tu cita',
     'text' => 'Nuestro equipo de expertos estará gustoso en atenderte.',
+    'animated' => false,
+    'link' => 'https://wa.me/51987654321'
   ],
   [
     'icon' => 'fa-regular fa-file-lines',
     'title' => 'Brochure',
     'text' => '25 años de experiencia',
+    'animated' => false,
+    'link' => '/assets/docs/brochure.pdf'
   ]
 ];
 ?>
 
 <section class="info-bar-on-slider" id="theme-info-area">
   <div class="container">
-    <div class="row d-flex flex-wrap"> <!-- Cambiado a flex-wrap -->
-      <?php foreach ($cards as $card): ?>
+    <div class="row d-flex flex-wrap">
+      <?php foreach ($cards as $index => $card): ?>
         <div class="col-lg-4 col-md-4 col-12 p-0" data-aos="fade-up" data-aos-delay="100">
-          <div class="info-card text-white d-flex align-items-start h-100 w-100">
-            <div class="me-3">
-              <i class="<?= $card['icon'] ?> fa-2x"></i>
+          <?php if ($card['link']): ?>
+            <a href="<?= $card['link'] ?>" target="_blank" class="text-decoration-none">
+          <?php endif; ?>
+            <div class="info-card text-white d-flex align-items-start h-100 w-100" style="<?= $card['link'] ? 'cursor: pointer;' : '' ?>">
+              <div class="me-3">
+                <i class="<?= $card['icon'] ?> fa-2x"></i>
+              </div>
+              <div>
+                <h5 class="mb-1"><?= $card['title'] ?></h5>
+                <?php if ($card['animated']): ?>
+                  <p class="mb-0 fs-4 fw-bold">
+                    <span id="counter" data-target="<?= $card['text'] ?>">0</span>+
+                  </p>
+                <?php else: ?>
+                  <p class="mb-0"><?= $card['text'] ?></p>
+                <?php endif; ?>
+              </div>
             </div>
-            <div>
-              <h5 class="mb-1"><?= $card['title'] ?></h5>
-              <p class="mb-0"><?= $card['text'] ?></p>
-            </div>
-          </div>
+          <?php if ($card['link']): ?>
+            </a>
+          <?php endif; ?>
         </div>
       <?php endforeach; ?>
     </div>
   </div>
 </section>
+
 
 
 
@@ -149,19 +169,19 @@ $servicios = [
 $testimonios = [
   [
     'texto' => '“La firma legal ha sido un aliado invaluable para nuestra empresa. Su asesoramiento experto y su capacidad para resolver conflictos legales nos han permitido avanzar con confianza en nuestras operaciones.”',
-    'imagen' => 'https://valdiviaconsultoresyabogados.pe/wp-content/plugins/arile-extra//inc/consultstreet/images/theme-user1.jpg',
+    'imagen' => 'assets/img/theme-user1.jpg',
     'nombre' => 'María Fernández',
     'cargo' => 'Gerente de Operaciones'
   ],
   [
     'texto' => '“Contratar los servicios de la firma legal fue la mejor decisión que tomé para proteger mi negocio. Su atención personalizada y su enfoque pragmático nos han salvado de situaciones complicadas en más de una ocasión.”',
-    'imagen' => 'https://valdiviaconsultoresyabogados.pe/wp-content/plugins/arile-extra//inc/consultstreet/images/theme-user2.jpg',
+    'imagen' => 'assets/img/theme-user2.jpg',
     'nombre' => 'Javier López',
     'cargo' => 'Propietario de Pequeña Empresa'
   ],
   [
     'texto' => '“La firma legal ha sido clave en la gestión de asuntos laborales complejos en nuestra empresa. Su profesionalismo y dedicación han garantizado el cumplimiento de nuestras obligaciones legales y la defensa de los derechos de nuestros empleados.”',
-    'imagen' => 'https://valdiviaconsultoresyabogados.pe/wp-content/plugins/arile-extra//inc/consultstreet/images/theme-user3.jpg',
+    'imagen' => 'assets/img/theme-user3.jpg',
     'nombre' => 'Ana Gómez',
     'cargo' => 'Directora de Recursos Humanos'
   ]
@@ -221,30 +241,51 @@ $testimonios = [
   </div>
 </section>
 
-
-<!-- BLOG SECTION -->
 <?php
-$noticias = [
-  [
-    'titulo' => 'Título de la Noticia',
-    'resumen' => 'Resumen breve de la noticia o artículo para captar el interés del lector.',
-    'imagen' => 'https://via.placeholder.com/600x300',
-    'enlace' => '#'
-  ],
-  [
-    'titulo' => 'Otra Noticia Interesante',
-    'resumen' => 'Un pequeño resumen que explica de qué trata esta noticia y por qué es relevante.',
-    'imagen' => 'https://via.placeholder.com/600x300',
-    'enlace' => '#'
-  ],
-  [
-    'titulo' => 'Noticia Destacada',
-    'resumen' => 'Una breve introducción que invita a leer el resto de la información publicada.',
-    'imagen' => 'https://via.placeholder.com/600x300',
-    'enlace' => '#'
-  ]
-];
+$url = "https://www.pj.gob.pe/wps/wcm/connect/CorteSuprema/s_cortes_suprema_home/as_Inicio/as_enlaces_destacados/as_imagen_prensa/as_notas_noticias/2025/";
+$html = file_get_contents($url);
+
+libxml_use_internal_errors(true);
+$dom = new DOMDocument();
+$dom->loadHTML($html);
+libxml_clear_errors();
+
+$xpath = new DOMXPath($dom);
+$rows = $xpath->query('//tr[@id="Cuerpo"]');
+
+$noticias = [];
+
+foreach ($rows as $row) {
+  if (count($noticias) >= 3) break; // Solo 3 noticias
+
+  // Imagen
+  $imgTag = $xpath->query('.//img', $row)->item(0);
+  $img = $imgTag ? $imgTag->getAttribute('src') : '';
+  $img = $img ? 'https://www.pj.gob.pe' . $img : 'https://via.placeholder.com/600x300';
+
+  // Título destacado (en negrita/subrayado dentro del div id="volada")
+  $tituloTag = $xpath->query('.//div[@id="volada"]//u', $row)->item(0);
+  $titulo = $tituloTag ? trim($tituloTag->nodeValue) : 'Sin título';
+
+  // Resumen o contenido (está en el div id="bajada")
+  $resumenTag = $xpath->query('.//div[@id="bajada"]//li', $row)->item(0);
+  $resumen = $resumenTag ? trim($resumenTag->nodeValue) : 'Sin resumen.';
+
+  // Enlace
+  $aTag = $xpath->query('.//div[contains(@class,"titulo")]//a', $row)->item(0);
+  $href = $aTag ? $aTag->getAttribute('href') : '#';
+  $href = $href ? 'https://www.pj.gob.pe' . $href : '#';
+
+  $noticias[] = [
+    'titulo' => $titulo,
+    'resumen' => $resumen,
+    'imagen' => $img,
+    'enlace' => $href
+  ];
+}
 ?>
+
+
 <section class="py-5 bg-light" id="theme-blog">
   <div class="container">
     <!-- Título y descripción -->
@@ -279,6 +320,38 @@ $noticias = [
   </div>
 </section>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const counter = document.getElementById("counter");
+  const target = +counter.getAttribute("data-target");
+  let count = 0;
 
+  const updateCount = () => {
+    const speed = 30; // más bajo = más rápido
+    const increment = Math.ceil(target / 100);
+
+    count += increment;
+    if (count >= target) {
+      count = 0; // reinicia al llegar al target
+    }
+
+    counter.innerText = count.toLocaleString();
+    setTimeout(updateCount, speed);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting) {
+        updateCount();
+        // Ya no desconectamos el observer porque queremos que el contador siga
+        // Si prefieres reiniciarlo cada vez que reaparezca en pantalla, podemos ajustar eso
+      }
+    },
+    { threshold: 0.5 }
+  );
+
+  observer.observe(counter);
+});
+</script>
 
 <?php include('includes/footer.php'); ?>

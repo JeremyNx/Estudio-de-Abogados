@@ -1,6 +1,6 @@
 :root {
   /* Paleta de colores */
-  --color-primary: #952f57;
+  --color-primary: #62152d;
   --color-secondary: #7a2648;
   --color-dark: #2b2b2b;
   --color-light: #fff;
@@ -98,7 +98,7 @@
 
 /*========================== SECTION CARDS ==========================*/
 .cards-areas {
-  padding-top: var(--slider-padding-y);
+  padding-top: 100px;
 }
 
 .card {
@@ -169,14 +169,14 @@
   .card-title {
     font-size: 1rem;
   }
-
+.cards-areas {
+    padding-top: 50px;
+  }
   .card-text {
     font-size: 0.9rem;
   }
 
-  .cards-areas {
-    padding-top: 250px;
-  }
+  
     .info-bar-on-slider {
     position: relative;
     margin-top: 0;
@@ -270,7 +270,7 @@
   position: relative;
   width: 100%;
   padding: 6rem 0;
-  background: url('https://valdiviaconsultoresyabogados.pe/wp-content/uploads/2024/04/hero.jpg') center center / cover no-repeat fixed;
+  background: url('../img/hero.jpg') center center / cover no-repeat fixed;
   color: var(--color-light);
   overflow: hidden;
 }
