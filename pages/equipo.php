@@ -18,7 +18,7 @@
 
   .card-img-wrapper {
     width: 100%;
-    aspect-ratio: 1 / 1/2;
+  aspect-ratio: 3 / 4; /* proporción vertical estilo retrato */
     /* REDUCIDO */
     overflow: hidden;
     background-color: #f1f1f1;
@@ -89,12 +89,20 @@
     background-color: #ccc;
     z-index: 0;
   }
+
+
+  @media screen and (max-width: 768px) {
+    .team-card {
+      max-height: none; /* Permitir altura completa en móviles */
+    }
+
+  }
 </style>
 
 
 <!-- ENCABEZADO -->
 <section class="theme-page-header-area text-white position-relative"
-  style="background-image: url('https://valdiviaconsultoresyabogados.pe/wp-content/uploads/2024/04/ai-generated-8679700_1280.jpg'); background-size: cover; background-position: center;">
+  style="background-image: url('../assets/img/encabezado.jpg'); background-size: cover; background-position: center;">
   <div class="overlay position-absolute top-0 start-0 w-100 h-100"
     style="background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
   <div class="container position-relative z-2 text-center py-5">
@@ -123,85 +131,101 @@
     </p>
 
     <!-- ABOGADOS -->
-    <div class="mb-5">
-      <h3 class="section-title"><span>Abogados</span></h3>
-      <div class="row g-4">
-        <?php
-        $abogados = [
-          ['nombre' => 'Abogado 1', 'especialidad' => 'Especialista en derecho penal', 'perfil' => 'abogado.php'],
-          ['nombre' => 'Abogado 2', 'especialidad' => 'Derecho civil y familia', 'perfil' => 'abogado2.php'],
-        ];
-        foreach ($abogados as $abogado): ?>
-          <div class="col-md-6 col-lg-3 d-flex">
-
-            <a href="Perfiles/<?= $abogado['perfil'] ?>" class="text-decoration-none w-100">
-              <div class="team-card position-relative">
-                <div class="card-img-wrapper">
-                  <img src="https://www.pngmart.com/files/21/Abogado-PNG-HD-Isolated.png" alt="<?= $abogado['nombre'] ?>">
-                  <div class="overlay">
-                    <span class="btn btn-outline-light">Ver perfil</span>
-                  </div>
-                </div>
-                <div class="info">
-                  <h5 class="fw-bold text-black mb-1"><?= $abogado['nombre'] ?></h5>
-                  <p class="text-muted mb-0"><?= $abogado['especialidad'] ?></p>
-                </div>
-              </div>
-            </a>
-          </div>
-        <?php endforeach; ?>
-      </div>
-    </div>
-
-    <!-- ASISTENTES LEGALES -->
-    <div class="mb-5">
-      <h3 class="section-title"><span>Asistentes Legales</span></h3>
-      <div class="row g-4">
-        <?php for ($i = 1; $i <= 4; $i++): ?>
-          <div class="col-md-6 col-lg-3 d-flex">
-
-            <a href="Perfiles/asistente.php" class="text-decoration-none w-100">
-              <div class="team-card position-relative">
-                <div class="card-img-wrapper">
-                  <img src="https://www.pngmart.com/files/21/Abogado-PNG-HD-Isolated.png" alt="Asistente <?= $i ?>">
-                  <div class="overlay">
-                    <span class="btn btn-outline-light">Ver perfil</span>
-                  </div>
-                </div>
-                <div class="info">
-                  <h5 class="fw-bold text-black mb-1">Asistente <?= $i ?></h5>
-                  <p class="text-muted mb-0">Apoyo jurídico y administrativo</p>
-                </div>
-              </div>
-            </a>
-          </div>
-        <?php endfor; ?>
-      </div>
-    </div>
-
-    <!-- SECRETARÍA -->
-    <div>
-      <h3 class="section-title"><span>Secretaría</span></h3>
-      <div class="row g-4 justify-content-center">
-        <div class="col-md-6 col-lg-3 d-flex">
-
-          <a href="Perfiles/secretaria.php" class="text-decoration-none w-100">
-            <div class="team-card position-relative">
-              <div class="card-img-wrapper">
-                <img src="https://www.pngmart.com/files/21/Abogado-PNG-HD-Isolated.png" alt="Secretaria 1">
-                <div class="overlay">
-                  <span class="btn btn-outline-light">Ver perfil</span>
-                </div>
-              </div>
-              <div class="info">
-                <h5 class="fw-bold text-black mb-1">Secretaria 1</h5>
-                <p class="text-muted mb-0">Atención al cliente y coordinación</p>
+   <div class="mb-5">
+  <h3 class="section-title"><span>Abogados</span></h3>
+  <div class="row g-4">
+    <?php
+    $abogados = [
+      [
+        'nombre' => 'Kimberly Tejada Zegarra',
+        'especialidad' => 'Especialista en derecho penal',
+        'perfil' => 'abogado1.php',
+        'imagen' => '../assets/img/usuarios/IMG_1682_1.webp' 
+      ],
+      [
+        'nombre' => 'Alex Daniel Hernández Vásquez',
+        'especialidad' => 'Especialista en derecho Civil',
+        'perfil' => 'abogado2.php',
+        'imagen' => '../assets/img/usuarios/IMG_1601_1.webp' 
+      ],
+    ];
+    foreach ($abogados as $abogado): ?>
+      <div class="col-md-6 col-lg-3 d-flex">
+        <a href="Perfiles/<?= $abogado['perfil'] ?>" class="text-decoration-none w-100">
+          <div class="team-card position-relative">
+            <div class="card-img-wrapper">
+              <img src="<?= $abogado['imagen'] ?>" alt="<?= $abogado['nombre'] ?>" class="img-fluid" loading="lazy">
+              <div class="overlay">
+                <span class="btn btn-outline-light">Ver perfil</span>
               </div>
             </div>
-          </a>
-        </div>
+            <div class="info">
+              <h5 class="fw-bold text-black mb-1"><?= $abogado['nombre'] ?></h5>
+              <p class="text-muted mb-0"><?= $abogado['especialidad'] ?></p>
+            </div>
+          </div>
+        </a>
       </div>
-    </div>
+    <?php endforeach; ?>
+  </div>
+</div>
+
+
+    <!-- ASISTENTES LEGALES -->
+     <?php
+$asistentes = [
+  [
+    'nombre' => 'Melvin Carlos Ramos Gonzales',
+    'descripcion' => 'Apoyo jurídico',
+    'imagen' => '../assets/img/usuarios/IMG_1617_1.webp',
+    'enlace' => 'Perfiles/asistente1.php'
+  ],
+  [
+    'nombre' => 'Sebastián Leonardo Acevedo Montesinos',
+    'descripcion' => 'Apoyo jurídico',
+    'imagen' => '../assets/img/usuarios/IMG_1642_1.webp',
+    'enlace' => 'Perfiles/asistente2.php'
+  ],
+  [
+    'nombre' => 'Karen Viviana Huamani Chilon',
+    'descripcion' => 'Apoyo jurídico',
+    'imagen' => '../assets/img/usuarios/IMG_1790_1.webp',
+    'enlace' => 'Perfiles/asistente3.php'
+  ],
+ 
+  // Puedes seguir agregando más asistentes aquí
+];
+?>
+<div class="mb-5">
+  <h3 class="section-title"><span>Asistentes Legales</span></h3>
+  <div class="row g-4">
+    <?php foreach ($asistentes as $asistente): ?>
+      <div class="col-md-6 col-lg-3 d-flex">
+        <a href="<?= $asistente['enlace'] ?>" class="text-decoration-none w-100">
+          <div class="team-card position-relative">
+            <div class="card-img-wrapper">
+              <img
+                src="<?= $asistente['imagen'] ?>"
+                alt="Foto de <?= $asistente['nombre'] ?>, <?= strtolower($asistente['descripcion']) ?>"
+                class="img-fluid" loading="lazy"
+              >
+              <div class="overlay">
+                <span class="btn btn-outline-light">Ver perfil</span>
+              </div>
+            </div>
+            <div class="info">
+              <h5 class="fw-bold text-black mb-1"><?= $asistente['nombre'] ?></h5>
+              <p class="text-muted mb-0"><?= $asistente['descripcion'] ?></p>
+            </div>
+          </div>
+        </a>
+      </div>
+    <?php endforeach; ?>
+  </div>
+</div>
+
+
+
 
   </div>
 </section>

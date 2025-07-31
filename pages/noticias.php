@@ -38,7 +38,7 @@ foreach ($filas as $i => $fila) {
 ?>
 
  <section class="theme-page-header-area text-white position-relative"
-    style="background-image: url('https://valdiviaconsultoresyabogados.pe/wp-content/uploads/2024/04/ai-generated-8679700_1280.jpg'); background-size: cover; background-position: center;">
+  style="background-image: url('../assets/img/encabezado.jpg'); background-size: cover; background-position: center;">
     <div class="overlay position-absolute top-0 start-0 w-100 h-100"
       style="background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
 
@@ -49,7 +49,7 @@ foreach ($filas as $i => $fila) {
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb justify-content-center mb-0 animate__animated animate__fadeInUp animate__delay-1s">
               <li class="breadcrumb-item">
-                <a href="https://valdiviaconsultoresyabogados.pe" class="text-white text-decoration-none">Inicio</a>
+                <a href="/" class="text-white text-decoration-none">Inicio</a>
               </li>
               <li class="breadcrumb-item disabled text-white">></li>
 

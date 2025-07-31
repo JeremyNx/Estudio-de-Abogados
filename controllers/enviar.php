@@ -16,15 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'jeremyneux@gmail.com';
-        $mail->Password = 'krwx pzei gwsz komw'; // Asegúrate que es tu app password y no tu contraseña real
+        $mail->Username = 'contacto@valdiviaabogados.pe';
+        $mail->Password = 'Ab9Y/kss'; // Asegúrate que es tu app password y no tu contraseña real
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
         // Detalles del correo
-        $mail->setFrom('jeremyneux@gmail.com', 'Web Estudio Valdivia');
+        $mail->setFrom('contacto@valdiviaabogados.pe', 'Web Estudio Valdivia');
         $mail->addReplyTo($correo, $nombre);
-        $mail->addAddress('jeremyneux@gmail.com', 'Admin');
+        $mail->addAddress('contacto@valdiviaabogados.pe', 'Admin');
 
         $mail->isHTML(true);
         $mail->Subject = 'Mensaje desde formulario';

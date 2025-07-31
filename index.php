@@ -1,19 +1,19 @@
-
 <?php include('includes/header.php'); ?>
-
 <?php
 $slides = [
   [
-    'img' => '/04/hero.jpg',
-    'title' => 'Brindamos la solución legal a tus problemas.',
-    'text' => 'Tu respuesta legal a medida. ¡Contáctanos ahora mismo para más detalles!',
-    'btn' => 'Contáctanos'
+    'img' => 'assets/img/usuarios/IMG_1763.webp',
+    'title' => 'Defensa legal Estratégica.',
+    'text' => 'Brindamos asesoría técnica legal de acuerdo a cada caso concreto.',
+    'btn' => 'Contáctanos',
+    'alt' => 'Imagen de abogados ofreciendo soluciones legales'
   ],
   [
-    'img' => '/03/hero3.jpg',
-    'title' => 'Asesoría Confiable',
-    'text' => 'Asesoría confiable para tus necesidades legales. ¡Confía en nosotros!',
-    'btn' => '¡Necesito ayuda!'
+    'img' => 'assets/img/usuarios/IMG_1812.webp',
+    'title' => 'BRINDAMOS LA SOLUCION LEGAL DE TUS PROBLEMAS',
+    'text' => 'Abogados especializados en Materia Constitucional, Penal, Civil y Gestión Pública comprometidos con tu caso.',
+    'btn' => '¡Necesito ayuda!',
+    'alt' => 'Asesoría legal confiable brindada por expertos'
   ]
 ];
 ?>
@@ -21,8 +21,9 @@ $slides = [
 <section class="theme-main-slider vrsn-two" id="theme-slider">
   <div id="theme-main-slider" class="owl-carousel">
     <?php foreach ($slides as $slide): ?>
-      <div class="item"
-        style="background-image: url('https://valdiviaconsultoresyabogados.pe/wp-content/uploads/2024/<?= $slide['img'] ?>');">
+      <div class="item" style="background-image: url('<?= $slide['img'] ?>');">
+        <!-- Imagen oculta solo para SEO/Accesibilidad -->
+        <img src="<?= $slide['img'] ?>" alt="<?= htmlspecialchars($slide['alt']) ?>" style="display:none;" />
         <div class="slider-overlay"></div>
         <div class="container theme-slider-content">
           <div class="theme-text-left">
@@ -41,6 +42,7 @@ $slides = [
 </section>
 
 
+
 <!-- INFO CARDS SECTION -->
 <?php
 $cards = [
@@ -56,14 +58,14 @@ $cards = [
     'title' => 'Separa tu cita',
     'text' => 'Nuestro equipo de expertos estará gustoso en atenderte.',
     'animated' => false,
-    'link' => 'https://wa.me/51987654321'
+    'link' => 'https://wa.me/996870829'
   ],
   [
     'icon' => 'fa-regular fa-file-lines',
     'title' => 'Brochure',
     'text' => '25 años de experiencia',
     'animated' => false,
-    'link' => '/assets/docs/brochure.pdf'
+    'link' => '#'
   ]
 ];
 ?>
@@ -75,8 +77,9 @@ $cards = [
         <div class="col-lg-4 col-md-4 col-12 p-0" data-aos="fade-up" data-aos-delay="100">
           <?php if ($card['link']): ?>
             <a href="<?= $card['link'] ?>" target="_blank" class="text-decoration-none">
-          <?php endif; ?>
-            <div class="info-card text-white d-flex align-items-start h-100 w-100" style="<?= $card['link'] ? 'cursor: pointer;' : '' ?>">
+            <?php endif; ?>
+            <div class="info-card text-white d-flex align-items-start h-100 w-100"
+              style="<?= $card['link'] ? 'cursor: pointer;' : '' ?>">
               <div class="me-3">
                 <i class="<?= $card['icon'] ?> fa-2x"></i>
               </div>
@@ -91,7 +94,7 @@ $cards = [
                 <?php endif; ?>
               </div>
             </div>
-          <?php if ($card['link']): ?>
+            <?php if ($card['link']): ?>
             </a>
           <?php endif; ?>
         </div>
@@ -107,11 +110,12 @@ $cards = [
 <?php
 $servicios = [
   [
-    'icono' => 'fa-gavel',
-    'titulo' => 'Derecho Civil',
-    'descripcion' => 'Asesoramiento legal experto en Derecho Civil: soluciones efectivas para conflictos contractuales y de propiedad.',
-    'enlace' => 'pages/subpages/DCivil.php'
+    'icono' => 'fa-book',
+    'titulo' => 'Derecho Constitucional',
+    'descripcion' => 'Ofrecemos asesoría legal integral en todas las etapas del proceso penal, asegurando una defensa efectiva bajo los nuevos códigos procesales.',
+    'enlace' => 'pages/subpages/DConstitucional.php'
   ],
+
   [
     'icono' => 'fa-balance-scale',
     'titulo' => 'Derecho Penal',
@@ -119,11 +123,11 @@ $servicios = [
     'enlace' => 'pages/subpages/DPenal.php'
   ],
   [
-    'icono' => 'fa-book',
-    'titulo' => 'Derecho Constitucional',
-    'descripcion' => 'Ofrecemos asesoría legal integral en todas las etapas del proceso penal, asegurando una defensa efectiva bajo los nuevos códigos procesales.',
-    'enlace' => 'pages/subpages/DConstitucional.php'
-  ]
+    'icono' => 'fa-gavel',
+    'titulo' => 'Derecho Civil',
+    'descripcion' => 'Asesoramiento legal experto en Derecho Civil: soluciones efectivas para conflictos contractuales y de propiedad.',
+    'enlace' => 'pages/subpages/DCivil.php'
+  ],
 ];
 ?>
 
@@ -242,46 +246,56 @@ $testimonios = [
 </section>
 
 <?php
-$url = "https://www.pj.gob.pe/wps/wcm/connect/CorteSuprema/s_cortes_suprema_home/as_Inicio/as_enlaces_destacados/as_imagen_prensa/as_notas_noticias/2025/";
-$html = file_get_contents($url);
+$cacheFile = __DIR__ . '/cache_noticias.json';
+$cacheTime = 3600; // 1 hora
 
-libxml_use_internal_errors(true);
-$dom = new DOMDocument();
-$dom->loadHTML($html);
-libxml_clear_errors();
+// Si el caché existe y aún es válido, usarlo
+if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTime) {
+  $noticias = json_decode(file_get_contents($cacheFile), true);
+} else {
+  $url = "https://www.pj.gob.pe/wps/wcm/connect/CorteSuprema/s_cortes_suprema_home/as_Inicio/as_enlaces_destacados/as_imagen_prensa/as_notas_noticias/2025/";
+  $html = @file_get_contents($url);
 
-$xpath = new DOMXPath($dom);
-$rows = $xpath->query('//tr[@id="Cuerpo"]');
+  $noticias = [];
 
-$noticias = [];
+  if ($html) {
+    libxml_use_internal_errors(true);
+    $dom = new DOMDocument();
+    $dom->loadHTML($html);
+    libxml_clear_errors();
 
-foreach ($rows as $row) {
-  if (count($noticias) >= 3) break; // Solo 3 noticias
+    $xpath = new DOMXPath($dom);
+    $rows = $xpath->query('//tr[@id="Cuerpo"]');
 
-  // Imagen
-  $imgTag = $xpath->query('.//img', $row)->item(0);
-  $img = $imgTag ? $imgTag->getAttribute('src') : '';
-  $img = $img ? 'https://www.pj.gob.pe' . $img : 'https://via.placeholder.com/600x300';
+    foreach ($rows as $row) {
+      if (count($noticias) >= 3)
+        break;
 
-  // Título destacado (en negrita/subrayado dentro del div id="volada")
-  $tituloTag = $xpath->query('.//div[@id="volada"]//u', $row)->item(0);
-  $titulo = $tituloTag ? trim($tituloTag->nodeValue) : 'Sin título';
+      $imgTag = $xpath->query('.//img', $row)->item(0);
+      $img = $imgTag ? $imgTag->getAttribute('src') : '';
+      $img = $img ? 'https://www.pj.gob.pe' . $img : 'https://via.placeholder.com/600x300';
 
-  // Resumen o contenido (está en el div id="bajada")
-  $resumenTag = $xpath->query('.//div[@id="bajada"]//li', $row)->item(0);
-  $resumen = $resumenTag ? trim($resumenTag->nodeValue) : 'Sin resumen.';
+      $tituloTag = $xpath->query('.//div[@id="volada"]//u', $row)->item(0);
+      $titulo = $tituloTag ? trim($tituloTag->nodeValue) : 'Sin título';
 
-  // Enlace
-  $aTag = $xpath->query('.//div[contains(@class,"titulo")]//a', $row)->item(0);
-  $href = $aTag ? $aTag->getAttribute('href') : '#';
-  $href = $href ? 'https://www.pj.gob.pe' . $href : '#';
+      $resumenTag = $xpath->query('.//div[@id="bajada"]//li', $row)->item(0);
+      $resumen = $resumenTag ? trim($resumenTag->nodeValue) : 'Sin resumen.';
 
-  $noticias[] = [
-    'titulo' => $titulo,
-    'resumen' => $resumen,
-    'imagen' => $img,
-    'enlace' => $href
-  ];
+      $aTag = $xpath->query('.//div[contains(@class,"titulo")]//a', $row)->item(0);
+      $href = $aTag ? $aTag->getAttribute('href') : '#';
+      $href = $href ? 'https://www.pj.gob.pe' . $href : '#';
+
+      $noticias[] = [
+        'titulo' => $titulo,
+        'resumen' => $resumen,
+        'imagen' => $img,
+        'enlace' => $href
+      ];
+    }
+
+    // Guardar en caché
+    file_put_contents($cacheFile, json_encode($noticias));
+  }
 }
 ?>
 
@@ -322,36 +336,36 @@ foreach ($rows as $row) {
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-  const counter = document.getElementById("counter");
-  const target = +counter.getAttribute("data-target");
-  let count = 0;
+    const counter = document.getElementById("counter");
+    const target = +counter.getAttribute("data-target");
+    let count = 0;
 
-  const updateCount = () => {
-    const speed = 30; // más bajo = más rápido
-    const increment = Math.ceil(target / 100);
+    const updateCount = () => {
+      const speed = 30; // más bajo = más rápido
+      const increment = Math.ceil(target / 100);
 
-    count += increment;
-    if (count >= target) {
-      count = 0; // reinicia al llegar al target
-    }
-
-    counter.innerText = count.toLocaleString();
-    setTimeout(updateCount, speed);
-  };
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting) {
-        updateCount();
-        // Ya no desconectamos el observer porque queremos que el contador siga
-        // Si prefieres reiniciarlo cada vez que reaparezca en pantalla, podemos ajustar eso
+      count += increment;
+      if (count >= target) {
+        count = 0; // reinicia al llegar al target
       }
-    },
-    { threshold: 0.5 }
-  );
 
-  observer.observe(counter);
-});
+      counter.innerText = count.toLocaleString();
+      setTimeout(updateCount, speed);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          updateCount();
+          // Ya no desconectamos el observer porque queremos que el contador siga
+          // Si prefieres reiniciarlo cada vez que reaparezca en pantalla, podemos ajustar eso
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(counter);
+  });
 </script>
 
 <?php include('includes/footer.php'); ?>

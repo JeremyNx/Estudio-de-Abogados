@@ -1,7 +1,7 @@
 <?php include('../includes/header.php'); ?>
 
 <section class="theme-page-header-area text-white position-relative"
-  style="background-image: url('https://valdiviaconsultoresyabogados.pe/wp-content/uploads/2024/04/ai-generated-8679700_1280.jpg'); background-size: cover; background-position: center;">
+  style="background-image: url('../assets/img/encabezado.jpg'); background-size: cover; background-position: center;">
   <div class="overlay position-absolute top-0 start-0 w-100 h-100"
     style="background-color: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
 
@@ -12,7 +12,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-center mb-0 animate__animated animate__fadeInUp animate__delay-1s">
             <li class="breadcrumb-item">
-              <a href="https://valdiviaconsultoresyabogados.pe" class="text-white text-decoration-none">Inicio</a>
+              <a href="/" class="text-white text-decoration-none">Inicio</a>
             </li>
             <li class="breadcrumb-item disabled text-white">></li>
 
@@ -36,7 +36,7 @@
               <i class="fas fa-envelope fa-2x"></i>
             </div>
             <h6 class="mb-1">Correo</h6>
-            <p class="mb-0">info@gmail.com</p>
+            <p class="mb-0">Valdiviabogadosc@Gmail.com</p>
           </div>
         </div>
         <div class="col-md-4">
@@ -45,7 +45,7 @@
               <i class="fas fa-phone-alt fa-2x"></i>
             </div>
             <h6 class="mb-1">Teléfono</h6>
-            <p class="mb-0">+51 956 845 214</p>
+            <p class="mb-0">+51  996870829</p>
           </div>
         </div>
         <div class="col-md-4">
@@ -83,7 +83,7 @@
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Correo electrónico</label>
-      <input type="email" class="form-control" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+      <input type="email" class="form-control" id="email" name="email" placeholder="Valdiviabogadosc@Gmail.com" required>
     </div>
     <div class="mb-3 flex-grow-1">
       <label for="message" class="form-label">Mensaje</label>

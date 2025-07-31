@@ -10,10 +10,34 @@ if ($query) {
         'Inicio' => '../index.php',
         'Nosotros' => '../pages/nosotros.php',
         'Contáctanos' => '../pages/contactanos.php',
-        'Servicios' => '../pages/equipo.php',
+        'Equipo' => '../pages/equipo.php',
         'Testimonios' => '../pages/testimonios.php',
-        'Preguntas frecuentes' => '../pages/faq.php',
         'Noticias' => '../pages/noticias.php',
+
+
+        'Perfil Dra. Kimberly Tejada Zegarra' => '../pages/perfiles/abogado1.php',
+        'Perfil Dr. Alex Daniel Hernández Vásquez' => '../pages/perfiles/abogado2.php',
+        'Perfil Asistente Melvin Carlos Ramos Gonzales' => '../pages/perfiles/asistente1.php',
+        'Perfil Asistente Sebastián Leonardo Acevedo Montesinos' => '../pages/perfiles/asistente2.php',
+        'Perfil Asistente Karen Viviana Huamani Chilon' => '../pages/perfiles/asistente3.php',
+        'Perfil Secretaria' => '../pages/perfiles/secretaria.php',
+
+
+
+        'Área de Práctica de Derecho Concursal' => '../pages/subpages/DConcursal.php',
+        'Área de Práctica de Derecho Civil' => '../pages/subpages/DCivil.php',
+        'Área de Práctica de Derecho Tributario' => '../pages/subpages/DTributario.php',
+        'Área de Práctica de Derecho Constitucional' => '../pages/subpages/DConstitucional.php',
+        'Área de Práctica de Derecho Penal' => '../pages/subpages/DPenal.php',
+        'Área de Práctica de Derecho Empresarial' => '../pages/subpages/DEmpresarial.php',
+        'Área de Práctica de Comercial y Corporativo' => '../pages/subpages/CYC.php',
+        'Área de Práctica de Derecho Municipal' => '../pages/subpages/DMunicipal.php',
+        'Área de Práctica de Derecho Administrativo' => '../pages/subpages/DAdministrativo.php',
+        'Área de Práctica de Derecho Laboral' => '../pages/subpages/DLaboral.php',
+        'Área de Práctica de Derecho Electoral' => '../pages/subpages/DElectoral.php',
+        'Área de Práctica de Gestión Pública' => '../pages/subpages/GPublica.php',
+
+
     ];
 
     foreach ($pages as $title => $file) {
